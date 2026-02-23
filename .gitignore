@@ -1,0 +1,59 @@
+# --------------------
+# Python bytecode
+# --------------------
+__pycache__/
+*.py[cod]
+*$py.class
+
+# --------------------
+# C extensions
+# --------------------
+*.so
+
+# --------------------
+# Virtual environments
+# --------------------
+.venv/
+venv/
+ENV/
+env/
+
+# --------------------
+# Packaging / build artifacts
+# --------------------
+build/
+dist/
+*.egg-info/
+.eggs/
+*.egg
+MANIFEST
+
+# --------------------
+# Test / coverage artifacts
+# --------------------
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+
+# --------------------
+# IDE / editor settings
+# --------------------
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# --------------------
+# OS junk
+# --------------------
+.DS_Store
+Thumbs.db
+
+# --------------------
+# Environment & secrets
+# --------------------
+.env
+.env.*
