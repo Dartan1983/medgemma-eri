@@ -74,25 +74,23 @@ This produces a **verifiable execution record** suitable for audit without re‑
 
 ---
 
-## Governed Execution Flow
+## **Governed Execution Flow**
 
-EMS Transcript + Medic Identity  
-↓  
-Input & Identity Verification  
-↓  
-Med-Gemma Signal Extraction  
-↓  
-Governance Evaluation  
-↓  
-NovaDNA / FuseID Binding  
-↓  
+EMS Transcript \+ Medic Identity  
+            ↓  
+   Input & Identity Verification  
+            ↓  
+   Med‑Gemma Signal Extraction  
+            ↓  
+     Governance Evaluation  
+            ↓  
+   NovaDNA / FuseID Binding  
+            ↓  
+   ┌────────────────┬────────────────┐  
+   │ Released       │ Refused         │  
+   │ Risk Artifact  │ (Logged Safety) │  
+   └────────────────┴────────────────┘
 
-**Outcome Decision**  
-┌───────────────────────────────────────┬───────────────────────────────────────┐  
-│ Released                              │ Refused                               │  
-│ Risk Assessment Artifact              │ Logged Safety Outcome                 │  
-│ (with audit record)                   │ (refusal recorded)                    │  
-└───────────────────────────────────────┴───────────────────────────────────────┘
 ---
 
 ## **Safety & Failure Handling**
@@ -119,38 +117,40 @@ In regulated clinical environments, **refusal is a required behavior**.
 
 All inputs used in this ERI are **synthetic or de‑identified**.
 
-## Quick Start
+---
 
-```bash
-docker run novamedx:medgemma-eri
-```
+## **Running the Executable Reference Implementation**
 
-Running the Executable Reference Implementation produces:
+Shell  
+docker run novamedx:medgemma-eri  
+Show more lines
 
-- A valid EMS handoff → released Risk Assessment Artifact
-- A high-uncertainty or integrity-violating input → intentional refusal with audit record
+Running the ERI produces two deterministic outcomes:
 
-All inputs are synthetic. No network access is required.
+1. A valid EMS handoff → **released Risk Assessment Artifact**  
+2. A high‑uncertainty or integrity‑violating input → **intentional refusal with audit record**
 
-**Impact**
+Artifacts are written locally and logged for inspection.
 
-This ERI demonstrates that clinical AI viability depends on governance embedded inside the execution path, not applied after generation.
+---
 
-It shows how Med‑Gemma can be deployed responsibly in EMS workflows, producing durable, identity‑bound clinical artifacts rather than ephemeral text — under realistic operational constraints.
+## **Impact**
 
-**Links
+This ERI demonstrates that **clinical AI viability depends on governance embedded inside the execution path**, not applied after generation.
 
-Required Video (≤ 3 min):
-`https://www.youtube.com/watch?v=ChY1IBMrSxA`
+It shows how Med‑Gemma can be deployed responsibly in EMS workflows, producing **durable, identity‑bound clinical artifacts** rather than ephemeral text — under realistic operational constraints.
 
-Public Code Repository:
-`https://github.com/Dartan1983/medgemma-eri/releases/tag/v1.0.0-medgemma-eri`
+---
+ 
+## **Closing**
 
-**Closing**
+**Intelligence proposes.**  
+**Governance decides.**
 
-Intelligence proposes.
-Governance decides.
-
-Med‑Gemma provides the signal.
+Med‑Gemma provides the signal.  
 NovaMedX determines whether it is safe to release.
 
+---
+##### Links
+- Source Repository: https://github.com/Dartan1983/medgemma-eri
+- Video (≤ 3 min): https://www.youtube.com/watch?v=ChY1IBMrSxA
