@@ -74,23 +74,25 @@ This produces a **verifiable execution record** suitable for audit without re‑
 
 ---
 
-## **Governed Execution Flow**
+## Governed Execution Flow
 
-EMS Transcript \+ Medic Identity  
-            ↓  
-   Input & Identity Verification  
-            ↓  
-   Med‑Gemma Signal Extraction  
-            ↓  
-     Governance Evaluation  
-            ↓  
-   NovaDNA / FuseID Binding  
-            ↓  
-   ┌────────────────┬────────────────┐  
-   │ Released       │ Refused        │  
-   │ Risk Artifact  │ (Logged Safety)│  
-   └────────────────┴────────────────┘
+EMS Transcript + Medic Identity  
+↓  
+Input & Identity Verification  
+↓  
+Med-Gemma Signal Extraction  
+↓  
+Governance Evaluation  
+↓  
+NovaDNA / FuseID Binding  
+↓  
 
+**Outcome Decision**  
+┌───────────────────────────────────────┬───────────────────────────────────────┐  
+│ Released                              │ Refused                               │  
+│ Risk Assessment Artifact              │ Logged Safety Outcome                 │  
+│ (with audit record)                   │ (refusal recorded)                    │  
+└───────────────────────────────────────┴───────────────────────────────────────┘
 ---
 
 ## **Safety & Failure Handling**
