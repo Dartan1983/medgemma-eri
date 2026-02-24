@@ -1,156 +1,111 @@
-# **NovaMedX – Governed Medical AI for EMS Risk Extraction**
+# NovaMedX — Executable Reference Implementation (ERI)
+Med‑Gemma + NovaDNA / FuseID
 
-**Med‑Gemma \+ NovaDNA / FuseID**
-
-## **Subtitle**
-
-A cyber‑safe EMS risk‑extraction system that produces identity‑bound, auditable clinical artifacts under real‑world constraints.
+A governed EMS risk‑extraction system producing identity‑bound, auditable clinical artifacts under real‑world constraints.
 
 ---
 
-## **Overview**
+## Quick Start (Fast Path)
 
-**NovaMedX** is a governed medical AI system built on **Med‑Gemma** for emergency medical services (EMS). It transforms unstructured EMS handoff transcripts into **structured, machine‑verifiable clinical risk artifacts** designed for real‑world emergency workflows.
+```bash
+docker run novamedx:medgemma-eri
+````
 
-This repository contains an **Executable Reference Implementation (ERI)** of a single, bounded EMS micro‑task. The scope is intentionally constrained to ensure clarity, reproducibility, and auditability.
+Running the Executable Reference Implementation produces **two deterministic outcomes**:
 
-Rather than expanding model autonomy, NovaMedX **constrains execution**.  
-Med‑Gemma proposes candidate clinical signals; governance determines whether those signals are safe to release.
+*   ✅ A valid EMS handoff → released Risk Assessment artifact
+*   ⛔ A high‑uncertainty or integrity‑violating input → intentional refusal with audit record
 
----
+All inputs are synthetic.  
+No network access is required.
 
-## **What This ERI Demonstrates**
+***
 
-This Executable Reference Implementation shows **one governed execution path**:
+## Reproducible Build (Exact Submission Version)
 
-**Structured clinical risk extraction from EMS handoff transcripts**
+To reproduce the **exact version evaluated by judges**, use the tagged release:
 
-The system:
+*   **Tag:** `v1.0.0-medgemma-eri`
+*   **Commit:** `a38117f`
 
-* Extracts predefined clinical risk indicators  
-  (e.g., airway compromise, sepsis risk, cardiovascular instability)  
-* Emits a strict, schema‑validated **Risk Assessment Artifact**  
-* Or **intentionally refuses output** when safety conditions are not met
+```bash
+git clone https://github.com/Dartan1983/medgemma-eri
+cd medgemma-eri
+git checkout tags/v1.0.0-medgemma-eri
 
-The system does **not** diagnose, recommend treatment, or operate as a conversational agent.
+docker build -t novamedx:medgemma-eri .
+docker run --rm novamedx:medgemma-eri
+```
 
----
+This guarantees deterministic behavior identical to the competition submission.
 
-## **Core Principles**
+***
 
-### **1\. Bounded Model Use (Med‑Gemma)**
+## What This Repository Is
 
-Med‑Gemma is used strictly as a **clinical signal extractor**.  
-Its outputs are treated as *candidate hypotheses*, not final answers.
+This repository contains an **Executable Reference Implementation (ERI)** of NovaMedX.
 
----
+The ERI demonstrates a **single, bounded clinical micro‑task**:
+extracting predefined risk signals from EMS handoff transcripts and releasing them **only** when identity, scope, and uncertainty constraints are satisfied.
 
-### **2\. Governed Execution**
+The implementation is intentionally constrained for:
 
-All Med‑Gemma outputs pass through a governance layer that enforces:
+*   clarity
+*   auditability
+*   reproducibility
 
-* task scope constraints  
-* uncertainty thresholds (3‑Sigma coherence)  
-* integrity and admissibility checks
+***
 
-If conditions are satisfied, output is released.  
-If not, the system **constrains or refuses** output.
+## Core Execution Model
 
-**Refusal is an intentional, logged safety outcome.**
+*   **Bounded Model Use (Med‑Gemma)**  
+    Med‑Gemma is used strictly to propose candidate clinical signals.
 
----
+*   **Governed Execution**  
+    All outputs pass through a runtime governance layer enforcing task scope, uncertainty thresholds (3‑Sigma coherence), and integrity checks.
 
-### **3\. Identity‑Bound Provenance (NovaDNA / FuseID)**
+*   **Identity‑Bound Provenance (NovaDNA / FuseID)**  
+    Each execution cryptographically binds identity, input, governance decision, model provenance, and outcome into a verifiable record.
 
-Each execution is bound locally using **NovaDNA / FuseID**, which cryptographically fuses:
+Refusal under uncertainty is an intentional, logged safety outcome.
 
-* requesting medic identity (synthetic)  
-* input transcript  
-* governance decision  
-* model provenance  
-* final outcome (artifact or refusal)
+***
 
-This produces a **verifiable execution record** suitable for audit without re‑execution.
+## Expected Outputs
 
----
+Structured artifacts are written to `outputs/`:
 
-## **Governed Execution Flow**
+*   `released.json` — schema‑validated risk assessment with identity‑bound provenance
+*   `refused.json` — logged safety refusal with audit metadata
 
-EMS Transcript \+ Medic Identity  
-            ↓  
-   Input & Identity Verification  
-            ↓  
-   Med‑Gemma Signal Extraction  
-            ↓  
-     Governance Evaluation  
-            ↓  
-   NovaDNA / FuseID Binding  
-            ↓  
-   ┌────────────────┬────────────────┐  
-   │ Released       │ Refused         │  
-   │ Risk Artifact  │ (Logged Safety) │  
-   └────────────────┴────────────────┘
+Outputs are deterministic for identical inputs.
 
----
+***
 
-## **Safety & Failure Handling**
+## Out of Scope (By Design)
 
-NovaMedX is designed to fail safely:
+This ERI does **not**:
 
-* ✅ Valid context \+ sufficient confidence  
-  → Risk Assessment Artifact released with audit record  
-* ⚠️ Rising uncertainty  
-  → Output constrained or clarification required  
-* ⛔ Integrity or safety violation  
-  → Output refused with audit record
+*   diagnose or recommend treatment
+*   operate autonomously
+*   require internet access
+*   represent the full NovaMedX platform
 
-In regulated clinical environments, **refusal is a required behavior**.
+It is a **reference execution** intended to demonstrate governed behavior under controlled conditions.
 
----
+***
 
-## **Execution Characteristics**
+## Documentation
 
-* **Deterministic**: identical inputs produce identical artifacts and hashes  
-* **Offline‑capable**: no external network access required  
-* **CPU‑only**: suitable for edge and tablet‑class hardware  
-* **Schema‑validated**: outputs are machine‑verifiable, not free text
+The authoritative project narrative, evaluation context, threat model, and FAQ are maintained on the GitHub Release page:
 
-All inputs used in this ERI are **synthetic or de‑identified**.
+<https://github.com/Dartan1983/medgemma-eri/releases/tag/v1.0.0-medgemma-eri>
 
----
+***
 
-## **Running the Executable Reference Implementation**
+## License
 
-Shell  
-docker run novamedx:medgemma-eri  
-Show more lines
+Licensed under the **Apache License 2.0**.  
+See LICENSE.
 
-Running the ERI produces two deterministic outcomes:
-
-1. A valid EMS handoff → **released Risk Assessment Artifact**  
-2. A high‑uncertainty or integrity‑violating input → **intentional refusal with audit record**
-
-Artifacts are written locally and logged for inspection.
-
----
-
-## **Impact**
-
-This ERI demonstrates that **clinical AI viability depends on governance embedded inside the execution path**, not applied after generation.
-
-It shows how Med‑Gemma can be deployed responsibly in EMS workflows, producing **durable, identity‑bound clinical artifacts** rather than ephemeral text — under realistic operational constraints.
-
----
- 
-## **Closing**
-
-**Intelligence proposes.**  
-**Governance decides.**
-
-Med‑Gemma provides the signal.  
-NovaMedX determines whether it is safe to release.
-
----
-##### Links
-- Source Repository: https://github.com/Dartan1983/medgemma-eri
-- Video (≤ 3 min): https://www.youtube.com/watch?v=ChY1IBMrSxA
+***
