@@ -116,13 +116,13 @@ This ERI demonstrates that clinical AI viability depends on governance embedded 
 
 It shows how Med‑Gemma can be deployed responsibly in EMS workflows, producing durable, identity‑bound clinical artifacts rather than ephemeral text — under realistic operational constraints.
 
-**Links**
+**Links
 
 Required Video (≤ 3 min):
 `https://www.youtube.com/watch?v=ChY1IBMrSxA`
 
 Public Code Repository:
-`https://github.com/Dartan1983/novamedx/releases/tag/v1.0.2-medgemma-challenge-final`
+`https://github.com/Dartan1983/medgemma-eri/releases/tag/v1.0.0-medgemma-eri`
 
 **Closing**
 
