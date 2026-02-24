@@ -1,101 +1,121 @@
-# NovaMedX — Governed Medical AI for EMS Risk Extraction **Med‑Gemma + NovaDNA / FuseID** *(Executable Reference Implementation · Kaggle MedGemma Impact Challenge Submission)*
+# **NovaMedX – Governed Medical AI for EMS Risk Extraction**
 
-**Subtitle**
+**Med‑Gemma \+ NovaDNA / FuseID**
+
+## **Subtitle**
 
 A cyber‑safe EMS risk‑extraction system that produces identity‑bound, auditable clinical artifacts under real‑world constraints.
 
-**Overview**
+---
 
-NovaMedX is a governed medical AI system built on Med‑Gemma for emergency medical services (EMS). It transforms unstructured EMS handoff transcripts into structured, machine‑verifiable clinical risk artifacts designed for real‑world emergency workflows.
+## **Overview**
 
-This repository contains an Executable Reference Implementation (ERI) of a single, bounded EMS micro‑task. The scope is intentionally constrained to ensure clarity, reproducibility, and auditability.
+**NovaMedX** is a governed medical AI system built on **Med‑Gemma** for emergency medical services (EMS). It transforms unstructured EMS handoff transcripts into **structured, machine‑verifiable clinical risk artifacts** designed for real‑world emergency workflows.
 
-Rather than expanding model autonomy, NovaMedX constrains execution.
+This repository contains an **Executable Reference Implementation (ERI)** of a single, bounded EMS micro‑task. The scope is intentionally constrained to ensure clarity, reproducibility, and auditability.
 
+Rather than expanding model autonomy, NovaMedX **constrains execution**.  
 Med‑Gemma proposes candidate clinical signals; governance determines whether those signals are safe to release.
 
-**What This ERI Demonstrates**
+---
 
-This Executable Reference Implementation shows one governed execution path:
+## **What This ERI Demonstrates**
 
-Structured clinical risk extraction from EMS handoff transcripts
+This Executable Reference Implementation shows **one governed execution path**:
+
+**Structured clinical risk extraction from EMS handoff transcripts**
 
 The system:
 
-- Extracts predefined clinical risk indicators
-(e.g., airway compromise, sepsis risk, cardiovascular instability)
-- Emits a strict, schema‑validated Risk Assessment Artifact
-- Or intentionally refuses output when safety conditions are not met
+* Extracts predefined clinical risk indicators  
+  (e.g., airway compromise, sepsis risk, cardiovascular instability)  
+* Emits a strict, schema‑validated **Risk Assessment Artifact**  
+* Or **intentionally refuses output** when safety conditions are not met
 
-The system does not diagnose, recommend treatment, or operate as a conversational agent.
+The system does **not** diagnose, recommend treatment, or operate as a conversational agent.
 
-**Core Principles**
+---
 
-1. Bounded Model Use (Med‑Gemma)
-Med‑Gemma is used strictly as a clinical signal extractor.
-Its outputs are treated as candidate hypotheses, not final answers.
+## **Core Principles**
 
-2. Governed Execution
+### **1\. Bounded Model Use (Med‑Gemma)**
+
+Med‑Gemma is used strictly as a **clinical signal extractor**.  
+Its outputs are treated as *candidate hypotheses*, not final answers.
+
+---
+
+### **2\. Governed Execution**
+
 All Med‑Gemma outputs pass through a governance layer that enforces:
 
-- task scope constraints
-- uncertainty thresholds (3‑Sigma coherence)
-- integrity and admissibility checks
+* task scope constraints  
+* uncertainty thresholds (3‑Sigma coherence)  
+* integrity and admissibility checks
 
-If conditions are satisfied, output is released.
-If not, the system constrains or refuses output.
+If conditions are satisfied, output is released.  
+If not, the system **constrains or refuses** output.
 
-Refusal is an intentional, logged safety outcome.
+**Refusal is an intentional, logged safety outcome.**
 
-3. Identity‑Bound Provenance (NovaDNA / FuseID)
-Each execution is bound locally using NovaDNA / FuseID, which cryptographically fuses:
+---
 
-- requesting medic identity (synthetic)
-- input transcript
-- governance decision
-- model provenance
-- final outcome (artifact or refusal)
+### **3\. Identity‑Bound Provenance (NovaDNA / FuseID)**
 
-This produces a verifiable execution record suitable for audit without re‑execution.
+Each execution is bound locally using **NovaDNA / FuseID**, which cryptographically fuses:
 
-**Governed Execution Flow**
+* requesting medic identity (synthetic)  
+* input transcript  
+* governance decision  
+* model provenance  
+* final outcome (artifact or refusal)
 
-EMS Transcript + Medic Identity
-↓
-Input & Identity Verification
-↓
-Med‑Gemma Signal Extraction
-↓
-Governance Evaluation
-↓
-NovaDNA / FuseID Binding
-↓
-┌────────────────┬────────────────┐
-│ Released │ Refused │
-│ Risk Artifact │ (Logged Safety) │
-└────────────────┴────────────────┘
+This produces a **verifiable execution record** suitable for audit without re‑execution.
 
-**Safety & Failure Handling**
+---
+
+## **Governed Execution Flow**
+
+EMS Transcript \+ Medic Identity  
+            ↓  
+   Input & Identity Verification  
+            ↓  
+   Med‑Gemma Signal Extraction  
+            ↓  
+     Governance Evaluation  
+            ↓  
+   NovaDNA / FuseID Binding  
+            ↓  
+   ┌────────────────┬────────────────┐  
+   │ Released       │ Refused        │  
+   │ Risk Artifact  │ (Logged Safety)│  
+   └────────────────┴────────────────┘
+
+---
+
+## **Safety & Failure Handling**
 
 NovaMedX is designed to fail safely:
 
-✅ Valid context + sufficient confidence
-→ Risk Assessment Artifact released with audit record
-⚠️ Rising uncertainty
-→ Output constrained or clarification required
-⛔ Integrity or safety violation
-→ Output refused with audit record
+* ✅ Valid context \+ sufficient confidence  
+  → Risk Assessment Artifact released with audit record  
+* ⚠️ Rising uncertainty  
+  → Output constrained or clarification required  
+* ⛔ Integrity or safety violation  
+  → Output refused with audit record
 
-In regulated clinical environments, refusal is a required behavior.
+In regulated clinical environments, **refusal is a required behavior**.
 
-**Execution Characteristics**
+---
 
-- Deterministic: identical inputs produce identical artifacts and hashes
-- Offline‑capable: no external network access required
-- CPU‑only: suitable for edge and tablet‑class hardware
-- Schema‑validated: outputs are machine‑verifiable, not free text
+## **Execution Characteristics**
 
-All inputs used in this ERI are synthetic or de‑identified.
+* **Deterministic**: identical inputs produce identical artifacts and hashes  
+* **Offline‑capable**: no external network access required  
+* **CPU‑only**: suitable for edge and tablet‑class hardware  
+* **Schema‑validated**: outputs are machine‑verifiable, not free text
+
+All inputs used in this ERI are **synthetic or de‑identified**.
 
 ## Quick Start
 
@@ -128,15 +148,7 @@ Public Code Repository:
 
 Intelligence proposes.
 Governance decides.
+
 Med‑Gemma provides the signal.
 NovaMedX determines whether it is safe to release.
 
-**Final Confirmation**
-
-This README:
-
-✔️ Is suitable as the Kaggle submission write‑up
-✔️ Doubles cleanly as the repository README
-✔️ Avoids “demo,” “prototype,” or “POC” language
-✔️ Matches the scope you intentionally chose
-✔️ Reads as serious, executable, and governed
